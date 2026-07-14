@@ -11,10 +11,11 @@
 
 class GPS_carro {
  TinyGPS gps;
- float latitude;
- float longitude;
+ float *latitude;
+ float *longitude;
  bool valid = false;
 public:
+ GPS_carro(float *lat, float *lon);
  void setup();
  void ler_gps();
  float get_latitude();
