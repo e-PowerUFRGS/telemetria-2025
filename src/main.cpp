@@ -48,7 +48,7 @@ void loop() {
         buffer += ",";
     }
 
-
+    gps.ler_gps();
     buffer += String(gps.get_latitude(), CASAS_DECIMAIS);
     buffer += ",";
     buffer += String(gps.get_longitude(), CASAS_DECIMAIS);
