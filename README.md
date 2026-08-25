@@ -18,13 +18,13 @@
 
 ## Organização 
 
-Atualizar este aqruivo conforme mudanças no código forem feitas,\ ele deve servir tanto como um guia de uso quanto como um guia para mudanças futuras,\ principalmente se os desenvolvedores mudarem.
+Atualizar este aqruivo conforme mudanças no código forem feitas, ele deve servir tanto como um guia de uso quanto como um guia para mudanças futuras, principalmente se os desenvolvedores mudarem.
 
 ## Visão geral do código
 
 O código usa o conceito de [classes do c++](https://en.cppreference.com/cpp/language/classes), pode ser necessário ler sobre elas.
-O arquivo `main.cpp` contém as interações diretas com o hardware,\ buffer de escrita no CSV além da estrutura padrão de um código para arduino.\ Para lidar com a interrupcao de timer para o controle de erros de apps veja [ISR](#isr).
-o arquivo `DEFINICOES.h` contém todas as configurações como pinagens,\ formato das linhas para o CSV e tempo. Contém também os includes para os outros arquivos e\as funções auxiliares da main.
+O arquivo `main.cpp` contém as interações diretas com o hardware, buffer de escrita no CSV além da estrutura padrão de um código para arduino. Para lidar com a interrupcao de timer para o controle de erros de apps veja [ISR](#isr).
+o arquivo `DEFINICOES.h` contém todas as configurações como pinagens, formato das linhas para o CSV e tempo. Contém também os includes para os outros arquivos e as funções auxiliares da main.
 
 # [main](/src/main.cpp)
 
@@ -37,7 +37,7 @@ o arquivo `DEFINICOES.h` contém todas as configurações como pinagens,\ format
 
 ## ISR
 
-O conceito de uma ISR é uma subrotina usada para lidar com algum processo critico,\no caso ela checa caso o acelerador foi declarado como em funcionamento pelo corpo do código.
+O conceito de uma ISR é uma subrotina usada para lidar com algum processo critico, no caso ela checa caso o acelerador foi declarado como em funcionamento pelo corpo do código.
 ```
 ISR(TIMER4_COMPA_vect) {//interrompe apos o tempo indicado em Definicoes-Timer configs- Tempo
     if (acelerador_passou) {
@@ -48,7 +48,7 @@ ISR(TIMER4_COMPA_vect) {//interrompe apos o tempo indicado em Definicoes-Timer c
 }
 ```  
 O tempo do relógio está definido em [src/DEFINICOES](src/DEFINICOES.h).
-O timeout error tranca a execução do código até que haja uma verificação do funcionamento\ do acelerador, enquanto isso mantém o rele desligado.
+O timeout error tranca a execução do código até que haja uma verificação do funcionamento do acelerador, enquanto isso mantém o rele desligado.
 ```
 void timeout_error() {//enquanto o acelerador estiver errado envia sinal para o rele não passar
     digitalWrite(PIN_RELE, RELE_OFF);
@@ -64,7 +64,7 @@ void timeout_error() {//enquanto o acelerador estiver errado envia sinal para o 
 
 Está separado por comentários indicando diferentes tipos de configuração.
 >[!IMPORTANT]
-> Configurações de tempo, pinagem, header e id's são propensas a erro\em caso de problemas no funcionamento verificar primeiro se estão de acordo com\a parte física do projeto
+> Configurações de tempo, pinagem, header e id's são propensas a erro em caso de problemas no funcionamento verificar primeiro se estão de acordo com a parte física do projeto
 Ex:
 ```
 //Accelerator Configs
@@ -79,22 +79,22 @@ const int RELE_ON = LOW;
 
 # [Acelerador](/src/Acelerador.h)
 
-Contém as configurações e funções relacionadas ao apps, usa dois [Potenciometros](#potenciometro)\para realizar os testes, é inicializado\pelos pinos conectados, a resolução usada,\a referencia de tensão e a aproximação exponencial para as funções dos apps.
-`bool is_working()` simultaneamente checa se não há um erro e coleta uma amostrr,\a amostra tem que ser acessada via `double get_valor`, que retorna\o valor aproximado entre 0 e 1 indicando o quanto o acelerador está pressionado.  
+Contém as configurações e funções relacionadas ao apps, usa dois [Potenciometros](#potenciometro) para realizar os testes, é inicializado pelos pinos conectados, a resolução usada, a referencia de tensão e a aproximação exponencial para as funções dos apps.
+`bool is_working()` simultaneamente checa se não há um erro e coleta uma amostra, a amostra tem que ser acessada via `double get_valor`, que retorna o valor aproximado entre 0 e 1 indicando o quanto o acelerador está pressionado.  
 
 # [Acelerometro](/src/Acelerometro.h)
 
-Contém as funções relacionadas ao acelerometro BNO055, recebe na declaração\um objeto BNO055 realiza o setup e pode ser acessado\com `void get_liner_acceleration(float *x, float *y, float *z);`\para resgatar valores de aceleração linear usando ponteiros.
+Contém as funções relacionadas ao acelerometro BNO055, recebe na declaração um objeto BNO055 realiza o setup e pode ser acessado com `void get_liner_acceleration(float *x, float *y, float *z);` para resgatar valores de aceleração linear usando ponteiros.
 
 # CAN_carro
 
 >[!WARNING]
->Ainda não implementado, temos que encontrar as mensagens dos dispositivos\ou encontrar uma forma genérica que o arduino suporte.
+>Ainda não implementado, temos que encontrar as mensagens dos dispositivos ou encontrar uma forma genérica que o arduino suporte.
 
 # [Cartao_SD](/src/Cartao_SD.h)
 
-Contém as funcionalidades do cartão SD, foi pensado para ser usado junto com\o [Dashboard da E-power](https://github.com/e-PowerUFRGS/dashboard), embora qualquer leitor de CSV\deve dar conta de ler esse arquivo.
-É declarado junto do nome do arquivo, nome da pasta e pino CS, que devem ser\escolhidos dentro do arquivo [src/DEFINICOES](src/DEFINICOES.h).
+Contém as funcionalidades do cartão SD, foi pensado para ser usado junto com o [Dashboard da E-power](https://github.com/e-PowerUFRGS/dashboard), embora qualquer leitor de CSV deve dar conta de ler esse arquivo.
+É declarado junto do nome do arquivo, nome da pasta e pino CS, que devem ser escolhidos dentro do arquivo [src/DEFINICOES](src/DEFINICOES.h).
 
 ```
 void Cartao_SD::escreve_linha(String linha, bool header) {
@@ -113,7 +113,7 @@ void Cartao_SD::escreve_linha(String linha, bool header) {
     }
 }
 ```
-Primeiro garante que o arquivo está aberto então se não for header,\escreve a linha normalmente,\se for header e o arquivo está vazio,\escreve o header,\caso tenha um header anterior e informações do arquivo,\não escreve o novo header.
+Primeiro garante que o arquivo está aberto então se não for header, escreve a linha normalmente, se for header e o arquivo está vazio, escreve o header, caso tenha um header anterior e informações do arquivo, não escreve o novo header.
 
 # GPS_carro
 
@@ -123,9 +123,9 @@ Contém definições do próprio GPS além de um objeto tinyGPS e funções para
 
 # Potenciometro
 
-Classe de suporte só esconde trechos de código repetitivos para leitura,\como não existem potenciometros fora os contidos pelo acelerador,\não há declaração deles fora do acelerador.
+Classe de suporte só esconde trechos de código repetitivos para leitura,\como não existem potenciometros fora os contidos pelo acelerador, não há declaração deles fora do acelerador.
 
 # Real_time_clock
 
 Implementa o RTC e lida com as funções dele usando a RTClib.
-mantém controle de certos parâmetros em relação ao tempo passado,\lida com a obtenção de tempos maiores do que um segundo, visto que o arduino\mantém controle por hardware da passagem do tempo em milissegundos,\realiza os calculos necessários para isso.
+mantém controle de certos parâmetros em relação ao tempo passado, lida com a obtenção de tempos maiores do que um segundo, visto que o arduino mantém controle por hardware da passagem do tempo em milissegundos, realiza os calculos necessários para isso.
