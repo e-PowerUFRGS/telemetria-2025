@@ -64,7 +64,7 @@ void timeout_error() {//enquanto o acelerador estiver errado envia sinal para o 
 
 Está separado por comentários indicando diferentes tipos de configuração.
 >[!IMPORTANT]
-> Configurações de tempo, pinagem, header e id's são propensas a erro em caso de problemas no funcionamento verificar primeiro se estão de acordo com a parte física do projeto
+> Configurações de tempo, pinagem, header e id's são propensas a erro. Em caso de problemas no funcionamento verificar primeiro se estão de acordo com a parte física do projeto
 Ex:
 ```
 //Accelerator Configs
