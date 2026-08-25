@@ -1,7 +1,7 @@
 // Copyright (c) Sandeep Mistry. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-#include <CAN.h>
+#include <CAN_carro.h>
 
 void setup() {
   Serial.begin(9600);
@@ -10,7 +10,7 @@ void setup() {
   Serial.println("CAN Sender");
   
   // start the CAN bus at 500 kbps
-  if (!CAN.begin(100E3)) {
+  if (!CAN_carro.begin(100E3)) {
     Serial.println("Starting CAN failed!");
     while (1);
   }
@@ -35,14 +35,14 @@ void loop() {
   // send extended packet: id is 29 bits, packet can contain up to 8 bytes of data
   Serial.print("Sending extended packet ... ");
 
-  CAN.beginExtendedPacket(0x2001100);
-  CAN.write('T');
-  CAN.write('E');
-  CAN.write('S');
-  CAN.write('T');
-  CAN.write('E');
-  CAN.write('!');
-  CAN.endPacket();
+  CAN_carro.beginExtendedPacket(0x2001100);
+  CAN_carro.write('T');
+  CAN_carro.write('E');
+  CAN_carro.write('S');
+  CAN_carro.write('T');
+  CAN_carro.write('E');
+  CAN_carro.write('!');
+  CAN_carro.endPacket();
 
   Serial.println("done");
 

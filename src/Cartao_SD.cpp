@@ -1,10 +1,7 @@
-//
-// Created by Jordi on 7/14/2026.
-//
 
 #include "Cartao_SD.h"
 
-Cartao_SD::Cartao_SD(String nome_arqivo, String nome_pasta, int chip_select): caminho_arquivo(nome_arqivo), caminho_pasta(nome_pasta) {
+Cartao_SD::Cartao_SD(String nome_arqivo, String nome_pasta, int chip_select):  caminho_pasta(nome_pasta), caminho_arquivo(nome_arqivo) {
     if (!SD.begin(chip_select)) {
         Serial.println("SD falhou");
         return;

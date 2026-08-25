@@ -1,6 +1,3 @@
-//
-// Created by Jordi on 7/14/2026.
-//
 
 #ifndef TELEMETRIA_2025_CARTAO_SD_H
 #define TELEMETRIA_2025_CARTAO_SD_H

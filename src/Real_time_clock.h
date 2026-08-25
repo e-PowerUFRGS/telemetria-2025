@@ -13,7 +13,7 @@ class Real_time_clock {
     public:
     Real_time_clock();
     bool pronto();
-    unsigned long tempo_que_passou();
+    unsigned long tempo_que_passou(bool fim_do_loop);
     unsigned long milisegundos();
     DateTime get_inicio();
     DateTime get_atual();

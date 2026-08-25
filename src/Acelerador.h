@@ -18,9 +18,11 @@ public:
     Acelerador(int pin_1, int pin_2,  int resolucao, int v_ref, Parametros_acelerador acelerador);
     void setup();
     bool is_working();
+    double get_valor();
 
 private:
     double to_volt(int val);
+    double valor = -1;
     int resolucao;
     int referencia_V;
     Parametros_acelerador acelerador;

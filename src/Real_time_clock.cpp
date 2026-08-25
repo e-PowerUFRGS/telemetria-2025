@@ -32,11 +32,13 @@ unsigned long Real_time_clock::milisegundos() {
     return milisegundos_atuais;
 }
 
-unsigned long Real_time_clock::tempo_que_passou() {
+unsigned long Real_time_clock::tempo_que_passou(bool fim_do_loop) {
     unsigned long milisegundos_novos = millis();
     DateTime agora = rtc.now();
     uint32_t diferenca_segundos = agora.unixtime() - atual.unixtime();
-    atual = agora;
+    if (fim_do_loop) {
+        atual = agora;
+    }
     unsigned long diferenca_milisegundos = diferenca_segundos*1000 + milisegundos_novos - milisegundos_atuais;
     milisegundos_atuais = milisegundos_novos;
 

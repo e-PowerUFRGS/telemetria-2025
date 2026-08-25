@@ -25,6 +25,7 @@ bool Acelerador::is_working() {
         return false;
     double real_1 = acelerador.mult1 * pow(volt_1,acelerador.exp1);
     double real_2 = acelerador.mult2 * pow(volt_2,acelerador.exp2);
+    valor = real_1;
     if (real_1 < real_2) {
         double temp = real_1;
         real_1 = real_2;
@@ -32,10 +33,13 @@ bool Acelerador::is_working() {
     }
     if (real_1 < acelerador.begining_of_range)
         return true;
-    else if (real_1 * (1-acelerador.max_error) < real_2)
+     if (real_1 * (1-acelerador.max_error) < real_2)
         return true;
-    else
-        return false;
+    return false;
+}
+
+double Acelerador::get_valor() {
+    return valor;
 }
 
 double Acelerador::to_volt(int val) {
