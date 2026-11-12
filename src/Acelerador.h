@@ -3,11 +3,12 @@
 #define TELEMETRIA_2025_ACELERADOR_H
 #include "Potenciometro.h"
 
-union Parametros_acelerador {
-    double mult1;
-    double exp1;
-    double mult2;
-    double exp2;
+struct Parametros_acelerador {
+    double a1;
+    double b1;
+    double a2;
+    double b2;
+    bool is_exponential;
     float v_limit;
     float max_error;
     float begining_of_range;
@@ -20,8 +21,10 @@ public:
     bool is_working();
     double get_valor();
 
+
 private:
-    double to_volt(int val);
+    double expression(double a, double b, bool is_exponential, double valor);
+    double to_volt(double val);
     double valor = -1;
     int resolucao;
     int referencia_V;

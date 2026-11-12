@@ -5,9 +5,9 @@
 
 #include <TinyGPS.h>
 
-#define GPS_SERIAL Serial1
-#define GPS_BAUD 9600
 
+#define GPS_SERIAL Serial3
+#define GPS_BAUD 9600
 
 class GPS_carro {
  TinyGPS gps;

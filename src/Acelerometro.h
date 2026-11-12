@@ -14,7 +14,7 @@ class Acelerometro {
     public:
     Acelerometro(Adafruit_BNO055 bno);
     void setup();
-    void get_liner_acceleration(float *x, float *y, float *z);
+    void get_linear_acceleration(float *x, float *y, float *z);
 };
 
 

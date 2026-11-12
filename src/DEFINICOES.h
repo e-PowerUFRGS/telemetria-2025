@@ -28,19 +28,22 @@ const int PIN_POTENCIOMETROS[NUM_POTENCIOMETROS] = {A0,A1,A2,A3};
 
 //Accelerator Configs
 const int POTS_ACELERADOR[2] = {A4,A5};
-const Parametros_acelerador PAR_ACELERADOR = {10/1/12/2/4.5/0.1/0.5};
+const Parametros_acelerador PAR_ACELERADOR = {10,1,12,2,false,4.5,0.1,0.5};
 const int CASAS_DECIMAIS = 2;
 const int REFERENCIA_DE_TENSAO = 5;
 const int PIN_RELE = 10;
-const int RELE_OFF = HIGH;//mudar se o rele estiver invertido
-const int RELE_ON = LOW;
+const int RELE_OFF = LOW;//mudar se o rele estiver invertido
+const int RELE_ON = HIGH;
 
 
 //SD Card Configs
-String HEADER = "ACELERADOR,POT1,POT2,POT3,POT4,LATITUDE,LONGITUDE,ANO,MES,DIA,HORA,MINUTO,SEGUNDO,MILISSEGUNDO";
+String HEADER = "ANO,MES,DIA,HORA,MINUTO,SEGUNDO,MILISSEGUNDO,ACELERADOR,LATITUDE,LONGITUDE";
 String PASTA_SD = "testes-epower";
 String ARQUIVO_SD = "dados";
 const int CHIP_SELECT_SD = 53;
+
+
+
 
 
 //RTC Configs
